@@ -43,7 +43,7 @@ export class OAuth extends Component {
         (
           <div>
               <GoogleLogin
-                  clientId="126520301268-sgm1rgofvihuej1j21iho2mi9ch1hl4p.apps.googleusercontent.com"
+                  clientId=""
                   buttonText="Login"
                   onSuccess={this.googleResponse}
                   onFailure={this.googleResponse}
