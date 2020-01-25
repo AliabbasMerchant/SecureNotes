@@ -1,88 +1,64 @@
+import {GoogleLogin} from "react-google-login";
 import React, { Component } from 'react'
-import {API_URL} from "./config";
-import FontAwesome from "react-fontawesome"
+
 export class OAuth extends Component {
-    state = {
-        user : {},
-        disabled : ''
-    }
-
-    checkPopup () {
-        const check = setInterval(() => {
-            const {popup} = this;
-            if (!popup || popup.closed || popup.closed == undefined){
-                clearInterval(check);
-                this.setState({disabled : ''});
-            }
-        }, 1000);
-    }
-
-    openPopup() {
-        const {provider, socket} = this.props;
-        const width = 600, height = 600;
-        const left = (window.innerWidth/2) - (width/2);
-        const top = (window.innerHeight/2) - (height/2);
-        const url = `${API_URL}/${provider}?socketId=${socket.id}`
-
-        return window.open(url, '', 
-            `toolbar=no, location=no, directories=no, status=no, menubar=no, 
-            scrollbars=no, resizable=no, copyhistory=no, width=${width}, 
-            height=${height}, top=${top}, left=${left}`
-        )
-    }
-
-    componentDidMount() {
-        const {socket, provider} = this.props;
-
-        socket.on(provider, user => {
-            this.popup.close();
-            this.setState({user})
-        });
-    }
-
-    startAuth(e) {
-        if (!this.state.disabled){
-            e.preventDefault();
-            this.popup = this.openPopup();
-            this.checkPopup();
-            this.setState({disabled : 'disabled'});
-        }
-    }
-
-    closeCard() {
-        this.setState({user : {}});
-    }
-
-    render() {
-        const { name, photo} = this.state.user
-    const { provider } = this.props
-    const { disabled } = this.state
+    constructor() {
+        super();
+        this.state = {
+          isAuth : false,
+          user : null,
+          token : ''
+        };
+      }
     
-    return (
-      <div>
-        {name
-          ? <div className={'card'}>              
-              <img src={photo} alt={name} />
-              <FontAwesome
-                name={'times-circle'}
-                className={'close'}
-                onClick={this.closeCard.bind(this)}
+      logout = () => {
+        this.setState({
+          isAuth : false,
+          user : null,
+          token : ''
+        })
+      }
+      
+      googleResponse = (e) => {};
+    
+      onFailure = (error) => {
+        alert(error);
+      }
+    
+      render() {
+        let content = !!this.state.isAuthenticated ?
+        (
+          <div>
+              <p>Authenticated</p>
+              <div>
+                  {this.state.user.email}
+              </div>
+              <div>
+                  <button onClick={this.logout} className="button">
+                      Log out
+                  </button>
+              </div>
+          </div>
+        ) :
+        (
+          <div>
+              <GoogleLogin
+                  clientId="126520301268-sgm1rgofvihuej1j21iho2mi9ch1hl4p.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={this.googleResponse}
+                  onFailure={this.googleResponse}
+                  cookiePolicy='single_host_origin'
               />
-              <h4>{name}</h4>
+          </div>
+        );
+    
+        return (
+            <div className="App">
+                {content}
             </div>
-          : <div className={'button-wrapper fadein-fast'}>
-              <button 
-                onClick={this.startAuth.bind(this)} 
-                className={`${provider} ${disabled} button`}
-              >
-                <FontAwesome
-                  name={provider}
-                />
-              </button>
-            </div>
-        }
-      </div>
-    )}
+        );
+    
+      }
 }
 
 export default OAuth
