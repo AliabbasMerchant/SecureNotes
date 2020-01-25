@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import NavBar from "./NavBar";
-export class TopBar extends Component {
-    render() {
-        return (
-            <div>
-                <NavBar/>
-            </div>
-        )
-    }
+function TopBar() {
+    return (
+        <div>
+            <NavBar />
+        </div>
+    )
 }
 
 export default TopBar
