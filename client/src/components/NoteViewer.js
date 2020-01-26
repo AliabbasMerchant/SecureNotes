@@ -3,9 +3,7 @@ import DisplayNote from "./DisplayNote";
 function NoteViewer() {
     return (
         <div>
-            <DisplayNote/>
-            <DisplayNote />
-            <DisplayNote/>
+            <DisplayNote title="Title1" note="Notes"/>
         </div>
     )
 }
