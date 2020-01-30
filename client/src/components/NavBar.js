@@ -1,38 +1,40 @@
-import React from 'react'
-import { useState, useEffect } from "react";
-import M from "materialize-css/dist/js/materialize.min.js"
-function NavBar() {
-    useEffect(() => {
-        var elem = document.querySelector(".sidenav");
-        var instance = M.Sidenav.init(elem, {
-            edge : "left",
-            inDuration : 250
-        })
-    })
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-    return (
-        <div>
-            <nav>
-                <div className="nav-wrapper">
-                    <a href="#" className="brand-logo">Logo</a>
-                    <a href="#" datatarget="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                    <ul className="right hide-on-med-and-down">
-                        <li><a>Sass</a></li>
-                        <li><a>Components</a></li>
-                        <li><a>Javascript</a></li>
-                        <li><a>Mobile</a></li>
+class Navbar extends Component{
+    navbarLinks() {
+        if (this.props.authenticated) {
+            return [
+                <li key="secret"><Link to="/secret">Secret</Link></li>,
+                <li key="signout"><Link to="/signout">Sign Out</Link></li>
+            ];
+        }
+        return [
+            <li key="signin"><Link to="/signin">Sign In</Link></li>,
+                <li key="signup"><Link to="/signup">Sign Up</Link></li>
+        ];
+    } 
+
+    render() {
+        return (
+            <nav className="navbar">
+                <div className="container">
+                    <Link to="/"><span className="brand">Auth-app</span></Link>
+                    <ul>
+                        {this.navbarLinks()}
                     </ul>
                 </div>
             </nav>
+        )
+    }
 
-            <ul className="sidenav" id="mobile-demo">
-                <li><a>Sass</a></li>
-                <li><a>Components</a></li>
-                <li><a>Javascript</a></li>
-                <li><a>Mobile</a></li>
-            </ul>
-        </div>
-    )
 }
 
-export default NavBar
+function mapStateToProps(state) {
+    return {
+        authenticated : state.authenticated
+    };
+}
+
+export default connect(mapStateToProps)(Navbar);

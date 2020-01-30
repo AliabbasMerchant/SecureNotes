@@ -1,9 +1,9 @@
 import React from 'react'
-import NavBar from "./NavBar";
+import Navbar from "./Navbar";
 function TopBar() {
     return (
         <div>
-            <NavBar />
+            <Navbar />
         </div>
     )
 }
