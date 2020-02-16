@@ -2,7 +2,7 @@ import React from 'react'
 import NoteViewer from "./NoteViewer";
 import FAB from "./FAB";
 
-function Main() {
+function HomePage() {
     return (
         <div>
             <NoteViewer />
@@ -11,4 +11,4 @@ function Main() {
     )
 }
 
-export default Main
+export default HomePage
