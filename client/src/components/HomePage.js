@@ -9,7 +9,8 @@ import store from "../store";
 import { isAuth } from "../actions/authActions";
 
 var divStyle = {
-    color: 'white'
+    color: 'white',
+    font: 'Times New Roman'
 }
 
 export class HomePage extends Component {
@@ -37,12 +38,12 @@ export class HomePage extends Component {
 
                     {
                         this.props.button && <Link className='divStyle' to='/login'>
-                            <button size="lg" color="blue">Sign In</button>
+                            <a class="waves-effect waves-light btn large">Sign In</a>
                         </Link>
                     }
                     {
                         this.props.button && <Link className='divStyle' to='/register'>
-                            <button size="lg" color="blue">Register</button>
+                            <a class="waves-effect waves-light btn large">Register</a>
                         </Link>
                     }
                     </div>

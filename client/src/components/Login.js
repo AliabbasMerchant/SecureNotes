@@ -70,49 +70,60 @@ class Login extends Component {
         }
         return (
           <div className={className}>
-    
-                <Card>
-                    <CardBody >
-                      <CardTitle> <h2><strong>Login</strong></h2></CardTitle>
-                    <CardSubtitle className="text-muted">Don't have an account?
-                    <Link to="/register"> Register. </Link></CardSubtitle>
-                    <br/>
-                    {this.state.msg ? (
-                  <Alert color="danger">{this.state.msg}</Alert>
-                ) : null}
-                      <Form onSubmit={this.onSubmit} >
-                      <FormGroup>
-    
-                        <Label for="email">E-mail</Label>
-                        <Input
-                          type="email"
-                          name="email"
-                          id="email"
-                          size="lg"
-                          placeholder="you@youremail.com"
-                          className="mb-3"
-                          onChange={this.onChange}
-                        />
-    
-                        <Label for="password">Password</Label>
-                        <Input
-                          type="password"
-                          name="password"
-                          id="password"
-                          size="lg"
-                          placeholder="Enter your Password"
-                          className="mb-3"
-                          onChange={this.onChange}
-                        />
-                        <Button size="lg" color="dark" style={{ marginTop: "2rem" }} block>
-                           { this.props.loading ?
-                           <span >Logging in.. <Spinner size="sm" color="light" /></span> : <span>Login</span>}
-                        </Button>
-                      </FormGroup>
-                    </Form>
-                    </CardBody>
-                </Card>
-    
+            <div className="card green darken-1">
+                <div className="card-content white-text" >
+                  <span className="card-title">Login </span>  
+                  <br/>
+                <p className="text-muted">
+                  Don't have an account?
+                  <Link to="/register"> Register. </Link>
+                </p>
+                <br/>
+                {this.state.msg ? (
+              <Alert color="danger">{this.state.msg}</Alert>
+            ) : null}
+                  <Form onSubmit={this.onSubmit} >
+                  <FormGroup>
+
+                    <Label for="email">E-mail</Label>
+                    <Input
+                      type="email"
+                      name="email"
+                      id="email"
+                      size="lg"
+                      placeholder="you@youremail.com"
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
+
+                    <Label for="password">Password</Label>
+                    <Input
+                      type="password"
+                      name="password"
+                      id="password"
+                      size="lg"
+                      placeholder="Enter your Password"
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
+                    <a class="waves-effect waves-light btn">button</a>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                      <i class="material-icons right">send</i>
+                    </button>
+                        { this.props.loading ?
+                        <span >Logging in.. 
+                          <Spinner size="sm" color="light" />
+                        </span> :
+                        <span>
+                          Login
+                        </span>
+                        
+                        }
+                    
+                  </FormGroup>
+                </Form>
+                </div>
+            </div>    
           </div>
         )
     }

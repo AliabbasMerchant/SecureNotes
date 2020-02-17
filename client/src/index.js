@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-    <BrowserRouter basename="/sessions-auth-app"> 
+    <BrowserRouter basename="/"> 
         <App />
     </BrowserRouter>
     , document.getElementById('root'));
