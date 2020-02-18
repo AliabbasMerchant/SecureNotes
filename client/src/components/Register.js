@@ -5,9 +5,7 @@ import { buttonClicked, isLoading } from "../actions/uiActions";
 import { Link } from "react-router-dom";
 import { register } from "../actions/authActions";
 import "./style.css"
-import {
-    Spinner
-  } from "reactstrap";
+import {Spinner} from "reactstrap";
 
 class Register extends Component {
     state = {
@@ -48,6 +46,10 @@ class Register extends Component {
     }
 
     onChange = (e) => {
+        this.setState({[e.target.name] : e.target.value});
+    }
+
+    onSubmit = (e) => {
         e.preventDefault();
         const {name, email, password} = this.state;
         const user = {name, email, password};
@@ -62,9 +64,9 @@ class Register extends Component {
         alert = <p color="red">{this.state.msg}</p>;
         } else if (this.state.msg && this.props.status.respCode === 200) {
         alert = (
-            <h3 color="green">
+            <p style={{color:'green'}}>
             {this.state.msg} <br /> Redirecting to Log In screen
-            </h3>
+            </p>
         );
         }
 
@@ -83,20 +85,17 @@ class Register extends Component {
                 <form className="col s12" method="post" onSubmit={this.onSubmit}>
                     <div className='row'>
                         <div className="input-field col s12">
-                            <input className='validate' type='text' name='name' id='name' placeholder="Enter your name" 
-                            onChange={this.onChange}/>
+                            <input className='validate' type='text' name='name' id='name' onChange={this.onChange}/>
                             <label for="name">Username</label>
                         </div>
 
                         <div className='input-field col s12'>
-                            <input className='validate' type='email' name='email' id='email' onChange={this.onChange}
-                            placeholder="Enter your Email ID"/>
+                            <input className='validate' type='email' name='email' id='email' onChange={this.onChange}/>
                             <label for='email'>Email ID</label>
                         </div>
 
                         <div className='input-field col s12'>
-                            <input className='validate' type='password' name='password' id='password' onChange={this.onChange}
-                            placeholder="Enter your password"/>
+                            <input className='validate' type='password' name='password' id='password' onChange={this.onChange}/>
                             <label for='password'>Password</label>
                         </div>
                         <label style={{float: 'right'}}/>
