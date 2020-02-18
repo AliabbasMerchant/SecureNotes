@@ -8,11 +8,7 @@ import "./style.css";
 import store from "../store";
 import { isAuth } from "../actions/authActions";
 
-var divStyle = {
-    color: 'white',
-    font: 'Times New Roman'
-}
-
+const style = {color : 'white', fontSize : "4vw"};
 export class HomePage extends Component {
     componentDidMount() {
         store.dispatch(isAuth())
@@ -27,9 +23,9 @@ export class HomePage extends Component {
         return (
             <div className="container">
                 <div className="main">
-                    <h1 style={divStyle}>Welcome to SecureNotes! </h1>
+                    <h1 style={style} >Welcome to SecureNotes! </h1>
                     <br />
-                    <h5 style={divStyle}> Sessions based Auth</h5>
+                    <h5 style={style}> Sessions based Auth</h5>
                     <div>
                     <Switch>
                         <Route exact path="/login" component={Login}/>
@@ -38,12 +34,12 @@ export class HomePage extends Component {
 
                     {
                         this.props.button && <Link className='divStyle' to='/login'>
-                            <a class="waves-effect waves-light btn large">Sign In</a>
+                            <button class="waves-effect waves-light btn large">Sign In</button>
                         </Link>
                     }
                     {
                         this.props.button && <Link className='divStyle' to='/register'>
-                            <a class="waves-effect waves-light btn large">Register</a>
+                            <button class="waves-effect waves-light btn large">Register</button>
                         </Link>
                     }
                     </div>

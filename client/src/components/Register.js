@@ -6,16 +6,6 @@ import { Link } from "react-router-dom";
 import { register } from "../actions/authActions";
 import "./style.css"
 import {
-    Button,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    Card,
-    CardTitle,
-    CardSubtitle,
-    CardBody,
-    Alert,
     Spinner
   } from "reactstrap";
 
@@ -67,17 +57,14 @@ class Register extends Component {
 
     render() {
         let className = "divStyle";
-
-    // If HTTP 400 error, render alert with red color, else if
-    // it is 200 OK, render alert in green
         let alert;
         if (this.state.msg && this.props.status.respCode >= 400) {
-        alert = <Alert color="danger">{this.state.msg}</Alert>;
+        alert = <p color="red">{this.state.msg}</p>;
         } else if (this.state.msg && this.props.status.respCode === 200) {
         alert = (
-            <Alert color="success">
+            <h3 color="green">
             {this.state.msg} <br /> Redirecting to Log In screen
-            </Alert>
+            </h3>
         );
         }
 
@@ -86,68 +73,49 @@ class Register extends Component {
         }
         return (
             <div className={className}>
-                <Card>
-                <CardBody>
-                    <CardTitle>
-                    <h2>
-                        <strong>Register</strong>
-                    </h2>
-                    </CardTitle>
-                    <CardSubtitle className="text-muted">
-                    Already have an account?
-                    <Link to="/login"> Log In. </Link>
-                    </CardSubtitle>
-                    <br />
-                    {alert}
-                    <Form onSubmit={this.onSubmit}>
-                    <FormGroup className="text-center">
-                        <Label for="name">Name</Label>
-                        <Input
-                        type="text"
-                        name="name"
-                        id="name"
-                        placeholder="Enter your name"
-                        className="mb-3"
-                        size="lg"
-                        onChange={this.onChange}
-                        />
+                <div className="card green">                
+                    <div className="card-content white-text" >
+                    <span className="card-title">Register</span>  
+                Already have an account?
+                <Link to="/login"> Log In. </Link>
+                <br />
+                {alert}
+                <form className="col s12" method="post" onSubmit={this.onSubmit}>
+                    <div className='row'>
+                        <div className="input-field col s12">
+                            <input className='validate' type='text' name='name' id='name' placeholder="Enter your name" 
+                            onChange={this.onChange}/>
+                            <label for="name">Username</label>
+                        </div>
 
-                        <Label for="email">E-mail</Label>
-                        <Input
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder="you@youremail.com"
-                        className="mb-3"
-                        size="lg"
-                        onChange={this.onChange}
-                        />
+                        <div className='input-field col s12'>
+                            <input className='validate' type='email' name='email' id='email' onChange={this.onChange}
+                            placeholder="Enter your Email ID"/>
+                            <label for='email'>Email ID</label>
+                        </div>
 
-                        <Label for="password">Password</Label>
-                        <Input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Enter your Password"
-                        className="mb-3"
-                        size="lg"
-                        onChange={this.onChange}
-                        />
-                        <Button color="dark" className="mt-5" size="lg" block>
-                        { this.props.loading ?
-                            <span >Registering.. <Spinner size="sm" color="light" /></span> : <span>Register</span>}
-                        </Button>
-                    </FormGroup>
-                    </Form>
-                </CardBody>
-                </Card>
+                        <div className='input-field col s12'>
+                            <input className='validate' type='password' name='password' id='password' onChange={this.onChange}
+                            placeholder="Enter your password"/>
+                            <label for='password'>Password</label>
+                        </div>
+                        <label style={{float: 'right'}}/>
+                    </div>
+                    <center>
+                    <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect indigo'>
+                    { this.props.loading ?
+                        <span >Registering.. <Spinner size="sm" color="light" /></span> : <span>Register</span>}
+                    </button>
+                    </center>
+                </form>
+                </div>
             </div>
+        </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    //Maps state to redux store as props
     button: state.ui.button,
     status: state.status,
     loading: state.ui.loading
