@@ -1,4 +1,4 @@
-const express = require('express');
+import express from "express";
 
 const router = express.Router();
 
@@ -11,4 +11,5 @@ if (process.env.NODE_ENV === "production") {
         res.sendFile(__dirname + '/client/build/index.html');
     })
 }
-module.exports = router;
+
+export default router;

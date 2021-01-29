@@ -7,6 +7,4 @@ function init(io) {
     });
 }
 
-module.exports = {
-    init,
-};
+export default init;
