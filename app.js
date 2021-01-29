@@ -20,6 +20,8 @@ app.use(cors());
 app.use(express.json()); // support json encoded bodies
 app.use(express.urlencoded({ extended: true })); // support encoded bodies
 app.use(passport.initialize())
+
+// TODO: Implement Passport Init configuration
 // passportInit()
 
 app.use(cookieParser(process.env.COOKIES_SECRET));
