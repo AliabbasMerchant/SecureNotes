@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import session from 'express-session';
+import session from "express-session";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import router from "./router";
@@ -15,7 +15,7 @@ const app = express();
 
 const server = new http.Server(app);
 const io = new socketIO(server);
-app.set('io', io);
+app.set("io", io);
 
 // webSocketHandler.init(io);
 
@@ -23,25 +23,25 @@ app.use(cors());
 
 app.use(express.json()); // support json encoded bodies
 app.use(express.urlencoded({ extended: true })); // support encoded bodies
-app.use(passport.initialize())
+app.use(passport.initialize());
 
 // TODO: Implement Passport Init configuration
 // passportInit()
 
 app.use(cookieParser(process.env.COOKIES_SECRET));
 app.use(
-    session({
-        secret: process.env.SECRET || "secret",
-        resave: true,
-        saveUninitialized: true
-    })
+  session({
+    secret: process.env.SECRET || "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
 );
 
-app.use(express.static(__dirname + '/client/build/'));
+app.use(express.static(__dirname + "/client/build/"));
 
 // Database Connection
 dbConnect();
 
-app.use('/', router);
+app.use("/", router);
 
 server.listen(process.env.PORT);
