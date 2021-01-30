@@ -42,6 +42,8 @@ app.use(express.static(__dirname + "/client/build/"));
 // Database Connection
 dbConnect();
 
-app.use("/", router);
+app.use("/api", router);
 
 server.listen(process.env.PORT);
+
+export default app;
