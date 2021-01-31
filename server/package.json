@@ -36,12 +36,14 @@
   },
   "homepage": "https://github.com/AliabbasMerchant/SecureNotes#readme",
   "dependencies": {
+    "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.10.3",
+    "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "socket.io": "^2.4.1"
   },
@@ -53,6 +55,7 @@
     "@types/express-session": "^1.17.3",
     "@types/mocha": "^8.2.0",
     "@types/mongoose": "^5.10.3",
+    "@types/morgan": "^1.9.2",
     "@types/node": "^14.14.22",
     "@types/passport": "^1.0.5",
     "@types/socket.io": "^2.1.13",
