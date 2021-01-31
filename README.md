@@ -2,7 +2,7 @@
 A realtime, secure notes and reminders application
 
 
-SecureNotes is aimed to be a note taking platform that will be able to keep all of your secret stuff as well. All the notes are passpord protected, and will therefore, be safe.
+SecureNotes is aimed to be a note taking platform that will be able to keep all of your secret stuff as well. All the notes are password protected, and will therefore, be safe.
 
 ## Tech Stack
 1. Backend: NodeJS, ExpressJS.
