@@ -7,7 +7,7 @@ import express, {
 import { validationResult } from "express-validator";
 import { validationErrorResponse } from "./utils";
 import mongoose from "mongoose";
-import NoteDocument from "../models/Notes/NotesDocument";
+import NoteDocument from "../models/Notes/INotesDocument";
 import NoteCollection from "../models/Notes/NotesCollection";
 
 export const getNotes: RequestHandler = async (
@@ -15,18 +15,13 @@ export const getNotes: RequestHandler = async (
   res: Response,
   next: NextFunction
 ) => {
-  // res.status(200).json({ message: "YO" });
   NoteCollection.find()
     .exec()
     .then((notes: NoteDocument[] | null) => {
-      if (!notes) {
-        return Promise.reject(res.status(401).end());
-      }
-
       res.status(200).json(notes);
     })
     .catch((error: Response) => {
-      return next(error);
+      return res.status(500).json({ message: error });
     });
 };
 
@@ -38,14 +33,10 @@ export const getNote: RequestHandler = async (
   await NoteCollection.findById(req.params.id)
     .exec()
     .then((notes: NoteDocument | null) => {
-      if (!notes) {
-        return Promise.reject(res.status(401).end());
-      }
-
       res.status(200).json(notes);
     })
     .catch((error: Response) => {
-      return next(error);
+      return res.status(500).json({ message: error });
     });
 };
 
@@ -74,7 +65,7 @@ export const createNote: RequestHandler = (
       return res.status(200).json(saved);
     })
     .catch((error: Response) => {
-      return next(error);
+      return res.status(500).json({ message: error });
     });
 };
 
@@ -102,7 +93,7 @@ export const updateNote: RequestHandler = async (
 
     return res.status(200).json(notes);
   } catch (error) {
-    return Promise.reject(res.status(404).json({ message: error.message }));
+    return res.status(404).json({ message: error.message });
   }
 };
 
@@ -128,6 +119,6 @@ export const deleteNote: RequestHandler = async (
         });
     })
     .catch((error: Response) => {
-      return next(error);
+      return res.status(500).json({ message: error });
     });
 };

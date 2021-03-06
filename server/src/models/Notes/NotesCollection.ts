@@ -1,10 +1,10 @@
 import mongoose, { Model, Schema } from "mongoose";
 
-import NotesDocument from "./NotesDocument";
+import NotesDocument from "./INotesDocument";
 
 export const noteSchema: Schema = new mongoose.Schema({
-  title: String,
-  content: String,
+  title: { type: String, required: true },
+  content: { type: String },
 });
 
 const NotesCollection: Model<NotesDocument> = mongoose.model(
