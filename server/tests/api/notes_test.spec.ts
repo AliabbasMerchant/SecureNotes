@@ -18,6 +18,19 @@ describe("Notes", () => {
    * Test the /GET route
    */
   describe("/GET notes", () => {
+    beforeEach((done)=>{
+      const data = [];
+      for (let i = 0; i < 10; i++) {
+        let objToInsert = {
+          title: "Test note title " + i,
+          content: "Test note content " + i,
+        };
+        data.push(objToInsert);
+      }
+      NoteCollection.insertMany(data)
+        .then(() => done())
+        .catch((error) => console.log(error));
+    })
     it("it should GET all the notes", (done) => {
       chai
         .request(app)
@@ -26,7 +39,7 @@ describe("Notes", () => {
           expect(err).to.be.null;
           res.should.have.status(200);
           res.body.should.be.a("array");
-          res.body.length.should.be.eql(0);
+          res.body.length.should.be.eql(10);
           done();
         });
     });
@@ -94,8 +107,8 @@ describe("Notes", () => {
             expect(err).to.be.null;
             res.should.have.status(200);
             res.body.should.be.a("object");
-            res.body.should.have.property("title");
-            res.body.should.have.property("content");
+            res.body.should.have.property("title").equal("The Chronicles of Narnia");
+            res.body.should.have.property("content").equal("Jackson");
             done();
           });
       });
