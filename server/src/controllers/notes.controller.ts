@@ -86,10 +86,14 @@ export const updateNote: RequestHandler = async (
         .status(404)
         .json({ error: `No notes with id: ${req.params.id}` });
     }
-    const notes = await NoteCollection.findByIdAndUpdate(req.params.id, {
-      title: req.body.title,
-      content: req.body.content,
-    }).exec();
+    const notes = await NoteCollection.findByIdAndUpdate(
+      req.params.id,
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+      { new: true }
+    ).exec();
 
     return res.status(200).json(notes);
   } catch (error) {
