@@ -18,7 +18,7 @@ describe("Notes", () => {
    * Test the /GET route
    */
   describe("/GET notes", () => {
-    beforeEach((done)=>{
+    beforeEach((done) => {
       const data = [];
       for (let i = 0; i < 10; i++) {
         let objToInsert = {
@@ -40,6 +40,20 @@ describe("Notes", () => {
           res.should.have.status(200);
           res.body.should.be.a("array");
           res.body.length.should.be.eql(10);
+          done();
+        });
+    });
+
+    it("it preserves all the notes", (done) => {
+      chai
+        .request(app)
+        .get("/api/notes")
+        .end((err, res) => {
+          expect(err).to.be.null;
+          res.should.have.status(200);
+          res.body[0].should.be.an("object");
+          res.body[0].should.have.property("title").equal("Test note title 0");
+          res.body[0].should.have.property("content").equal("Test note content 0");
           done();
         });
     });
@@ -105,7 +119,7 @@ describe("Notes", () => {
           .send({ title: "The Chronicles of Narnia", content: "Jackson" })
           .end((err, res) => {
             expect(err).to.be.null;
-            res.should.have.status(200);
+            res.should.have.status(201);
             res.body.should.be.a("object");
             res.body.should.have.property("title").equal("The Chronicles of Narnia");
             res.body.should.have.property("content").equal("Jackson");
