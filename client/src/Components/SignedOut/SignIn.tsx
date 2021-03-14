@@ -1,5 +1,4 @@
 import React, { ReactElement, useState } from "react";
-import { Link } from "react-router-dom";
 import color from "../../Assets/color";
 import signin from "../../Images/signin.gif";
 
@@ -38,10 +37,7 @@ function SignIn(props: Props): ReactElement {
   return (
     <div className="row" style={styles.con}>
       <div className="col hide-on-med-and-down l6 ">
-        <img
-          src={signin}
-          style={styles.image}
-        />
+        <img src={signin} style={styles.image} />
       </div>
       <div className="col s12 l6 ">
         <div className="card purple" style={styles.card}>
@@ -71,16 +67,14 @@ function SignIn(props: Props): ReactElement {
                 Password
               </label>
             </div>
-            <Link to="/loged">
-              <button
-                onClick={() => setClicked(true)}
-                className="btn waves-effect lighten-1 "
-                style={styles.btn}
-              >
-                {" "}
-                Sign In{" "}
-              </button>
-            </Link>
+            <button
+              onClick={() => setClicked(true)}
+              className="btn waves-effect lighten-1 "
+              style={styles.btn}
+            >
+              {" "}
+              Sign In{" "}
+            </button>
             <br></br>
             <br></br>
           </form>
