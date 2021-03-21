@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import color from "../../Assets/color";
-import signin from "../../Images/signin.gif"
+import signin from "../../Images/signin.gif";
 
 interface Props {}
 
@@ -25,7 +25,6 @@ function SignUp(props: Props): ReactElement {
       borderRadius: "3rem",
       marginTop: "5rem",
       width: "30rem",
-
     },
     btn: {
       backgroundColor: color.secondary,
@@ -38,10 +37,7 @@ function SignUp(props: Props): ReactElement {
   return (
     <div className="row" style={styles.con}>
       <div className="col hide-on-med-and-down l6">
-        <img
-          src={signin}
-          style={styles.image}
-        />
+        <img src={signin} style={styles.image} />
       </div>
       <div className="col s12 l6 ">
         <div className="card purple" style={styles.card}>

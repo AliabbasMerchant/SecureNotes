@@ -25,11 +25,7 @@ function Carousel() {
           Security to the next level
         </p>
       </div>
-      <a
-        className="carousel-item red white-text darken-1"
-        // style={styles.bgColor}
-        href="#one!"
-      >
+      <a className="carousel-item red white-text darken-1" href="#one!">
         <img
           src="https://cdn.pixabay.com/photo/2017/01/12/17/11/post-it-1975179__340.png"
           className="hide-on-large-only responsive-img"

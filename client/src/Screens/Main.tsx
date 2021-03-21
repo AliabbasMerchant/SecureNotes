@@ -4,7 +4,6 @@ import Navbar from "../Components/SignedOut/Navbar";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import SignIn from "../Components/SignedOut/SignIn";
 import SignUp from "../Components/SignedOut/SignUp";
-import Main2 from "./Main2";
 
 function Main() {
   return (
