@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Notebook from "../../Images/home_notebook.gif";
 import color from "../../Assets/color";
 
 function Carousel() {
@@ -15,64 +16,41 @@ function Carousel() {
 
   const styles = {
     bgColor: color.carousel1,
+    con: {
+      margin: "2rem",
+      marginTop: "0.2rem",
+    },
+    textCon: {
+      marginTop: "4rem",
+    },
+    textCon2: {
+      marginTop: "4rem",
+      marginBottom: "4rem",
+      margin: "1rem",
+    },
   };
 
+  const desc: string =
+    "Secure Notes is a no profit, END-TO-END encryted notes storing website. Secure Notes has tons of features making it more secure to use than some other similar sites. Some of its features are mentioned below.";
+
   return (
-    <div className="carousel carousel-slider center">
-      <div className="carousel-fixed-item center container">
-        <h2 className="white-text darken-5 hoverable">Secure Notes</h2>
-        <p className="white-text flow-text darken-5 hoverable">
-          Security to the next level
-        </p>
+    <div className="row purple-text" style={styles.con}>
+      <div className="hide-on-large-only center-align " style={styles.textCon2}>
+        <h2 className=" "> Secure Notes</h2>
+        <h5 className="">Security to the next level</h5>
+        <p className="">{desc}</p>
       </div>
-      <a className="carousel-item red white-text darken-1" href="#one!">
-        <img
-          src="https://cdn.pixabay.com/photo/2017/01/12/17/11/post-it-1975179__340.png"
-          className="hide-on-large-only responsive-img"
-          alt=""
-        />
-        <img
-          src="https://cdn.pixabay.com/photo/2017/01/12/17/16/postit-1975188__340.png"
-          className="hide-on-med-and-down responsive-img"
-          alt=""
-        />
-      </a>
-      <a className="carousel-item amber white-text" href="#two!">
-        <img
-          src="https://cdn.pixabay.com/photo/2017/01/12/17/11/post-it-1975179__340.png"
-          className="hide-on-large-only responsive-img"
-          alt=""
-        />
-        <img
-          src="https://cdn.pixabay.com/photo/2017/01/12/17/16/postit-1975188__340.png"
-          className="hide-on-med-and-down responsive-img"
-          alt=""
-        />
-      </a>
-      <a className="carousel-item green white-text" href="#three!">
-        <img
-          src="https://cdn.pixabay.com/photo/2017/01/12/17/11/post-it-1975179__340.png"
-          className="hide-on-large-only responsive-img"
-          alt=""
-        />
-        <img
-          src="https://cdn.pixabay.com/photo/2017/01/12/17/16/postit-1975188__340.png"
-          className="hide-on-med-and-down responsive-img"
-          alt=""
-        />
-      </a>
-      <a className="carousel-item blue white-text" href="#four!">
-        <img
-          src="https://cdn.pixabay.com/photo/2017/01/12/17/11/post-it-1975179__340.png"
-          className="hide-on-large-only responsive-img"
-          alt=""
-        />
-        <img
-          src="https://cdn.pixabay.com/photo/2017/01/12/17/16/postit-1975188__340.png"
-          className="hide-on-med-and-down responsive-img"
-          alt=""
-        />
-      </a>
+      <div
+        className="col l6 s12 hide-on-med-and-down left-align"
+        style={styles.textCon}
+      >
+        <h2 className=" "> Secure Notes</h2>
+        <h5 className="">Security to the next level</h5>
+        <p className="">{desc}</p>
+      </div>
+      <div className="col l6 m0 s0 hide-on-med-and-down">
+        <img src={Notebook} alt="" />
+      </div>
     </div>
   );
 }
