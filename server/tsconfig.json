@@ -27,11 +27,17 @@
     "resolveJsonModule": true,
     "baseUrl": "."
   },
+  
+  "files": ["./types.d.ts", "./node_modules/@types/node/index.d.ts"],
   "exclude": [
     "node_modules"
   ],
   "include": [
     "./src/**/*.tsx",
     "./src/**/*.ts"
-  ]
+  ],
+  "typeRoots":[
+    "./@types",
+    "./node_modules/@types",
+    ]
 }

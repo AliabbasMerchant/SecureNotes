@@ -1,3 +1,4 @@
+
 import { RequestHandler, Request, Response } from "express";
 import { validationResult } from "express-validator";
 import { validationErrorResponse } from "./utils";
@@ -14,6 +15,7 @@ export const getNotes: RequestHandler = async (
     .then((notes: NoteDocument[] | null) => {
       res.status(200).json(notes);
     })
+
     .catch((error) => {
       return res.status(500).json({ error: error.message });
     });
@@ -45,6 +47,7 @@ export const createNote: RequestHandler = (req: Request, res: Response) => {
   if (invalid) {
     return invalid;
   }
+
   const note: NoteDocument = new NotesCollection({
     title: req.body.title,
     content: req.body.content,
@@ -56,6 +59,7 @@ export const createNote: RequestHandler = (req: Request, res: Response) => {
     .then((saved: any | null) => {
       return res.status(200).json(saved);
     })
+
     .catch((error) => {
       return res.status(500).json({ error: error.message });
     });
@@ -65,6 +69,7 @@ export const updateNote: RequestHandler = async (
   req: Request,
   res: Response
 ) => {
+
   const invalid: Response | false = validationErrorResponse(
     res,
     validationResult(req)
@@ -92,6 +97,7 @@ export const updateNote: RequestHandler = async (
 
 export const deleteNote: RequestHandler = async (
   req: Request,
+
   res: Response
 ) => {
   const isNote: boolean = await NotesCollection.exists(
