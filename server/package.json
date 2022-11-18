@@ -46,7 +46,7 @@
     "mongoose": "^5.10.3",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
-    "socket.io": "^2.4.1"
+    "socket.io": "^2.5.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.14",
